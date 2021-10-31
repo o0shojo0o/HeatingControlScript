@@ -96,6 +96,7 @@ function createHeatingRooms(){
 }
 
 function createHeatingProfileDataPoins(heatingRooms){
+    setObject('0_userdata.0.Heating', { common: { name: 'Heating' }, type: 'folder' });
     for(const roomKey in heatingRooms){      
         const roomName = getRoomFriendlyName(roomKey);
         const dp_heating_temperature = `0_userdata.0.Heating.${roomName}.heating_temperature`;
@@ -119,7 +120,7 @@ function createHeatingProfileDataPoins(heatingRooms){
             setState(obj.id, obj.state.val, true);
         });
 
-
+        setObject(`0_userdata.0.Heating.${roomName}`,{ common: { name: roomName }, type: 'folder' });
         createState(dp_heating_temperature,21,{ name: 'Heating temperature for this room',type: 'number',role: 'value','unit': '°C' });
         createState(dp_night_reduction, 16, {name: 'Night reduction for this room', type: 'number', role: 'value', 'unit': '°C'});
         createState(dp_heating_breaker_delay, 10, {name: 'Delay of heating breaker', type: 'number', role: 'value', 'unit': 'Sec.'});
