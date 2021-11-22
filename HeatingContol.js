@@ -175,8 +175,8 @@ function scheduleHeatingProfileAllRooms(){
 function scheduleHeatingProfile(room){
     for (const key in room.profiles){
         const profile = room.profiles[key];        
-        const startKey = key + '_start';
-        const endKey = key + '_end';
+        const startKey = `${room.name}_${key}_start`;
+        const endKey = `${room.name}_${key}_end`;
         if (profile){
             const profileObj = createProfileObject(profile);
 
@@ -241,7 +241,7 @@ function setHeating(room){
                 log(`No present is a resident -> ${key} set to ${room.night_reduction}`);
             }
         }
-        log(`No present is a resident -> ${room.name} heating night reduction, `);
+        log(`No present is a resident -> ${room.name} heating night reduction`);
     } 
     else {
         const currentDayOfWeek = getCurrentDayOfWeek();
